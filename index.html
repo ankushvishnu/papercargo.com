@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Papercargo — Pivoting</title>
+  <meta name="description" content="Papercargo is pivoting. Something new is on the way. Stay tuned."/>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7c3aed;
+      --muted:#9aa4b2;
+      --white:#f8fafc;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:900px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#071028 0%, #071c2f 60%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+      line-height:1.35;
+    }
+    .card{
+      width:100%;
+      max-width:var(--maxw);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:34px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+    }
+    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#4c1d95);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:20px;
+    }
+    h1{margin:0;font-size:28px}
+    p.lead{color:var(--muted);margin:12px 0 20px}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .cta{
+      display:flex;gap:10px;align-items:center;
+    }
+    .btn{
+      background:var(--accent);
+      color:white;border:0;padding:12px 16px;border-radius:10px;font-weight:600;
+      cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.18);
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+    .muted{color:var(--muted);font-size:14px}
+    .countdown{margin-top:20px;display:flex;gap:12px}
+    .count-block{
+      background:var(--glass);padding:12px 14px;border-radius:8px;min-width:80px;text-align:center;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .count-num{font-size:18px;font-weight:700}
+    .count-label{font-size:12px;color:var(--muted);margin-top:6px}
+    footer{margin-top:20px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+    .small{font-size:12px;color:var(--muted)}
+    @media (max-width:520px){
+      .countdown{flex-direction:row;overflow:auto}
+      .card{padding:22px}
+      h1{font-size:22px}
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="main-heading">
+    <header>
+      <div class="logo" aria-hidden="true">PC</div>
+      <div>
+        <div class="muted">Papercargo</div>
+        <div class="small">Pivot & product launch</div>
+      </div>
+    </header>
+
+    <h1 id="main-heading">We’re pivoting. Something new is on the way.</h1>
+    <p class="lead">Papercargo is evolving into a modern AI agent platform — new products, new marketplace, same name. We’ll be back with a focused launch on <strong>1 January 2026</strong>. Sign up to get early access and priority onboarding.</p>
+
+    <div class="row">
+      <!-- Subscribe: mailto fallback -->
+      <a class="btn" id="subscribeBtn" href="mailto:hello@papercargo.com?subject=Papercargo%20waitlist&body=Please%20add%20me%20to%20the%20Papercargo%20waitlist.%0A%0AName:%0ACompany:%0AEmail:">
+        ✉️ Join the waitlist
+      </a>
+
+      <!-- Optional: copy for teams who want to self-host or become resellers -->
+      <a class="btn ghost" id="contactBtn" href="mailto:hello@papercargo.com?subject=Papercargo%20pivot%20-%20I%27m%20interested">
+        📞 Contact sales
+      </a>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown" aria-hidden="false" id="countdown">
+      <div class="count-block"><div class="count-num" id="days">--</div><div class="count-label">Days</div></div>
+      <div class="count-block"><div class="count-num" id="hours">--</div><div class="count-label">Hours</div></div>
+      <div class="count-block"><div class="count-num" id="minutes">--</div><div class="count-label">Minutes</div></div>
+      <div class="count-block"><div class="count-num" id="seconds">--</div><div class="count-label">Seconds</div></div>
+    </div>
+
+    <footer>
+      <div>© Papercargo — Pivoting</div>
+      <div class="small">Need immediate help? Email <a href="mailto:hello@papercargo.com" style="color:inherit;text-decoration:underline">hello@papercargo.com</a></div>
+    </footer>
+  </main>
+
+  <script>
+    // Countdown to 1 Jan 2026 00:00:00 (UTC+5:30 is user's timezone but use UTC for uniformity)
+    (function(){
+      const target = new Date(Date.UTC(2026,0,1,0,0,0)); // Jan 1, 2026 UTC
+      const elDays = document.getElementById('days');
+      const elHours = document.getElementById('hours');
+      const elMins = document.getElementById('minutes');
+      const elSecs = document.getElementById('seconds');
+
+      function pad(n){return n<10?'0'+n:n}
+      function tick(){
+        const now = new Date();
+        let diff = Math.max(0, target - now);
+        const days = Math.floor(diff / (1000*60*60*24));
+        diff -= days*1000*60*60*24;
+        const hours = Math.floor(diff / (1000*60*60));
+        diff -= hours*1000*60*60;
+        const minutes = Math.floor(diff / (1000*60));
+        diff -= minutes*1000;
+        const seconds = Math.floor(diff/1000);
+        elDays.textContent = pad(days);
+        elHours.textContent = pad(hours);
+        elMins.textContent = pad(minutes);
+        elSecs.textContent = pad(seconds);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</body>
+</html>
